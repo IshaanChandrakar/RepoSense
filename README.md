@@ -73,7 +73,7 @@ npm run dev
 4.  **LLM Analysis**: GPT-4o-mini analyzes the code changes + context to identify issues.
 5.  **Feedback Loop**: Issues are posted as review comments on GitHub.
 
-<img width="1314" height="1228" alt="image" src="https://github.com/user-attachments/assets/66643d25-7f9b-43da-94f6-16ef9c8ed7c5" />
+<img width="1245" height="1070" alt="Screenshot 2026-02-23 032227" src="https://github.com/user-attachments/assets/81722abc-073a-4d71-9e6e-9f3f5d5c9f7f"/>
 
 <img width="2475" height="303" alt="image" src="https://github.com/user-attachments/assets/f8a9da13-2405-4eff-aa7d-56215b28a6bb" />
 
