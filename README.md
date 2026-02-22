@@ -1,12 +1,11 @@
-# AI Code Reviewer for GitHub Pull Requests 
+# RepoSense – AI Powered GitHub PR Reviewer
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Next.js](https://img.shields.io/badge/Next.js-15.0-black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
 ![OpenAI](https://img.shields.io/badge/AI-Gemini--2.5--flash-green)
 
-<img width="2294" height="1217" alt="image" src="https://github.com/user-attachments/assets/5638570b-39b0-4bbe-b954-6a4806f89d74" />
-
+<img width="2017" height="1232" alt="Screenshot 2026-02-23 031316" src="https://github.com/user-attachments/assets/8c063ec0-8967-48a9-9ad3-f2e59604d4e8" />
 
 A production-ready GitHub App that automatically reviews Pull Requests using LLMs and RAG. It provides threaded, context-aware comments on bugs, security vulnerabilities, and style violations, acting as an always-on senior engineer for your repo.
 
