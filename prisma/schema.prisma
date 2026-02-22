@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Repository {
+  id          String   @id @default(uuid())
+  githubId    String   @unique
+  owner       String
+  name        String
+  installId   Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  reviews     Review[]
+  pullRequests PullRequest[]
+}
+
+model PullRequest {
+  id          String   @id @default(uuid())
+  githubId    String   @unique
+  number      Int
+  title       String
+  repoId      String
+  repository  Repository @relation(fields: [repoId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  reviews     Review[]
+}
+
+model Review {
+  id          String   @id @default(uuid())
+  prId        String
+  pullRequest PullRequest @relation(fields: [prId], references: [id])
+  repoId      String
+  repository  Repository @relation(fields: [repoId], references: [id])
+  status      String   // PENDING, COMPLETED, FAILED
+  summary     String?
+  grade       String?
+  issues      String?  // JSON string of issues
+  issuesFound Int      @default(0)
+  duration    Int?     @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

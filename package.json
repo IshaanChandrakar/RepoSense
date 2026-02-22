@@ -1,0 +1,46 @@
+{
+  "name": "ai-code-reviewer-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio",
+    "webhook": "ngrok http 3000"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "@lancedb/lancedb": "^0.5.0",
+    "@octokit/auth-app": "^8.2.0",
+    "@octokit/rest": "^20.0.2",
+    "@octokit/webhooks": "^13.2.6",
+    "@prisma/client": "^5.10.2",
+    "clsx": "^2.1.0",
+    "dotenv": "^17.2.4",
+    "fastify": "^4.26.1",
+    "jsonwebtoken": "^9.0.3",
+    "lucide-react": "^0.563.0",
+    "next": "15.0.0",
+    "openai": "^4.28.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "tailwind-merge": "^2.2.1",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.19",
+    "@types/react": "^18.2.57",
+    "@types/react-dom": "^18.2.19",
+    "autoprefixer": "^10.4.17",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "14.1.0",
+    "ngrok": "^5.0.0-beta.2",
+    "postcss": "^8.4.35",
+    "prisma": "^5.10.2",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3"
+  }
+}
