@@ -5,6 +5,9 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
 ![OpenAI](https://img.shields.io/badge/AI-Gemini--2.5--flash-green)
 
+<img width="2294" height="1217" alt="image" src="https://github.com/user-attachments/assets/5638570b-39b0-4bbe-b954-6a4806f89d74" />
+
+
 A production-ready GitHub App that automatically reviews Pull Requests using LLMs and RAG. It provides threaded, context-aware comments on bugs, security vulnerabilities, and style violations, acting as an always-on senior engineer for your repo.
 
 ## Features
@@ -70,6 +73,12 @@ npm run dev
 3.  **RAG Context**: (Optional) Relevant repo documentation is retrieved from LanceDB to provide context (e.g., "We use snake_case for database columns").
 4.  **LLM Analysis**: GPT-4o-mini analyzes the code changes + context to identify issues.
 5.  **Feedback Loop**: Issues are posted as review comments on GitHub.
+
+<img width="1314" height="1228" alt="image" src="https://github.com/user-attachments/assets/66643d25-7f9b-43da-94f6-16ef9c8ed7c5" />
+
+<img width="2475" height="303" alt="image" src="https://github.com/user-attachments/assets/f8a9da13-2405-4eff-aa7d-56215b28a6bb" />
+
+
 
 ## Why Use This? 
 
