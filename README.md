@@ -3,7 +3,7 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Next.js](https://img.shields.io/badge/Next.js-15.0-black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
-![OpenAI](https://img.shields.io/badge/AI-GPT--4o--mini-green)
+![OpenAI](https://img.shields.io/badge/AI-Gemini--2.5--flash-green)
 
 A production-ready GitHub App that automatically reviews Pull Requests using LLMs and RAG. It provides threaded, context-aware comments on bugs, security vulnerabilities, and style violations, acting as an always-on senior engineer for your repo.
 
