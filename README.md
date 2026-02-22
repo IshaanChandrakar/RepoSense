@@ -1,4 +1,4 @@
-# AI Code Reviewer for GitHub Pull Requests 🤖✨
+# AI Code Reviewer for GitHub Pull Requests 
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Next.js](https://img.shields.io/badge/Next.js-15.0-black)
@@ -7,7 +7,7 @@
 
 A production-ready GitHub App that automatically reviews Pull Requests using LLMs and RAG. It provides threaded, context-aware comments on bugs, security vulnerabilities, and style violations, acting as an always-on senior engineer for your repo.
 
-## 🚀 Features
+## Features
 
 -   **Context-Aware Analysis**: Uses RAG (LanceDB) to understand your repo's specific architecture and conventions before reviewing.
 -   **Intelligent Diffs**: Parses Git diffs to comment on specific lines with suggested fixes.
@@ -15,7 +15,7 @@ A production-ready GitHub App that automatically reviews Pull Requests using LLM
 -   **Threaded Comments**: Posts actionable feedback directly on the PR timeline.
 -   **Dashboard**: View review metrics, historical data, and aggregate stats.
 
-## 🛠 Tech Stack
+## Tech Stack
 
 -   **Frontend**: Next.js 15 (App Router), TailwindCSS
 -   **Backend**: Next.js API Routes (Serverless), Webhooks
@@ -24,7 +24,7 @@ A production-ready GitHub App that automatically reviews Pull Requests using LLM
 -   **AI**: OpenAI GPT-4o-mini
 -   **Integration**: Octokit, GitHub Webhooks
 
-## 📦 Installation & Setup
+## Installation & Setup
 
 ### Prerequisites
 -   Node.js 18+
@@ -63,7 +63,7 @@ npx prisma db push
 npm run dev
 ```
 
-## 🧠 How It Works (Architecture)
+## How It Works (Architecture)
 
 1.  **Webhook Trigger**: GitHub sends a `pull_request` payload to `/api/webhook`.
 2.  **Diff Parsing**: The system fetches the PR diff and parses it into file chunks.
@@ -71,7 +71,7 @@ npm run dev
 4.  **LLM Analysis**: GPT-4o-mini analyzes the code changes + context to identify issues.
 5.  **Feedback Loop**: Issues are posted as review comments on GitHub.
 
-## 🏆 Why Use This? (For Recruiters)
+## Why Use This? 
 
 This project demonstrates:
 -   **System Design**: Handling async webhooks and serverless constraints.
