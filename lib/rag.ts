@@ -1,21 +1,20 @@
-import * as lancedb from 'lancedb';
-import { OpenAIEmbeddings } from '@langchain/openai'; // Note: User needs to ensure this package is allowed or use direct OpenAI calls.
-// Using direct OpenAI for simplicity if langchain is overkill or not in package.json (it wasn't in my initial list).
-// Let's implement a simple embedding wrapper.
+import * as lancedb from '@lancedb/lancedb';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
-import OpenAI from 'openai';
+const apiKey = process.env.GEMINI_API_KEY || process.env.OPENAI_API_KEY;
 
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-});
+let genAI: GoogleGenerativeAI | null = null;
+if (apiKey) {
+    genAI = new GoogleGenerativeAI(apiKey);
+}
 
 async function getEmbedding(text: string): Promise<number[]> {
-    const response = await openai.embeddings.create({
-        model: 'text-embedding-3-small',
-        input: text,
-        encoding_format: 'float',
-    });
-    return response.data[0].embedding;
+    if (!genAI) {
+        throw new Error("Missing API Key for Gemini API");
+    }
+    const model = genAI.getGenerativeModel({ model: "text-embedding-004" });
+    const result = await model.embedContent(text);
+    return result.embedding.values;
 }
 
 export async function connectToVectorDB(dbPath: string = 'data/lancedb') {
@@ -59,7 +58,7 @@ export async function queryRepository(repoName: string, query: string, limit: nu
     try {
         const table = await db.openTable(tableName);
         const queryVector = await getEmbedding(query);
-        const results = await table.search(queryVector).limit(limit).execute();
+        const results = await table.search(queryVector).limit(limit).toArray();
         return results;
     } catch (error) {
         console.error(`Error querying repo ${repoName}:`, error);

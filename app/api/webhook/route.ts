@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Webhooks } from "@octokit/webhooks";
-import { getOctokit, getPRDiff } from "@/lib/github";
+import { getOctokit, getPRDiff, fetchFullRepository } from "@/lib/github";
 import { analyzeDiff } from "@/lib/analysis";
+import { queryRepository, indexRepository } from "@/lib/rag";
 import prisma from "@/lib/prisma";
 
 const webhooks = new Webhooks({
@@ -78,6 +79,21 @@ async function processPullRequest(
 
     console.log(`📂 Found ${fileDiffs.length} files to review.`);
 
+    // 2.5️⃣ Index the repository if not already indexed (Basic implementation)
+    try {
+      console.log(`📚 Fetching entire ${repo.full_name} for RAG indexing...`);
+      const repoFiles = await fetchFullRepository(octokit, repo.owner.login, repo.name);
+      if (repoFiles.length > 0) {
+        await indexRepository(repo.full_name, repoFiles);
+        console.log(`✅ successfully indexed ${repo.full_name} with ${repoFiles.length} text files`);
+      } else {
+        console.warn(`⚠️ No textual files found to index in ${repo.full_name}`);
+      }
+    } catch (e: any) {
+      console.error(`🔥 Failed to fetch or index repository ${repo.full_name}:`, e.message);
+      // We don't fail the PR review if indexing fails, it just degrades to no context
+    }
+
     let totalIssues = 0;
     let comments = [];
 
@@ -87,7 +103,11 @@ async function processPullRequest(
       if (fileDiff.file.includes('lock.json') || fileDiff.file.includes('.lock')) continue;
 
       try {
-        const issues = await analyzeDiff(fileDiff, "");
+        // Retrieve context using RAG
+        const ragResults = await queryRepository(repo.full_name, fileDiff.content, 3);
+        const contextLines = ragResults.map((r: any) => `File: ${r.path}\nContent:\n${r.content}`).join('\n\n');
+
+        const issues = await analyzeDiff(fileDiff, contextLines);
         totalIssues += issues.length;
 
         for (const issue of issues) {
